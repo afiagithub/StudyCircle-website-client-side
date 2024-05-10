@@ -1,8 +1,8 @@
 import { FiEdit2 } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SingleAssignCard = ({ a, handleDelete }) => {
-    const {_id, title, image, subject, marks, difficulty, due_date, description, a_creator } = a;
+    const {_id, title, image, subject, mark, difficulty, due_date, description, a_creator } = a;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img className="h-72" src={image} alt="Shoes" /></figure>
@@ -20,7 +20,7 @@ const SingleAssignCard = ({ a, handleDelete }) => {
                     </div>
                     <div className="flex flex-row justify-between items-center">
                         <p className="text-lg font-bold text-[#A91D3A]">
-                            <span className="font-normal text-base text-black">Marks:</span> {marks}</p>
+                            <span className="font-normal text-base text-black">Marks:</span> {mark}</p>
                         <p className="text-lg font-bold text-[#A91D3A]">
                             <span className="font-normal text-base text-black">Due:</span> {new Date(due_date).toLocaleDateString()}</p>
                     </div>
@@ -29,9 +29,9 @@ const SingleAssignCard = ({ a, handleDelete }) => {
                     <button onClick={() => handleDelete(_id, a_creator.email)} className="btn btn-square btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
-                    <button className="btn btn-square btn-sm bg-[#874CCC] text-white">
+                    <Link to={`/update-assign/${_id}`} className="btn btn-square btn-sm bg-[#874CCC] text-white">
                         <FiEdit2 />
-                    </button>
+                    </Link>
                 </div>
             </div>
             <NavLink to={`/assignment/${_id}`} className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 

@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import AssignDetails from "../pages/AssignDetails";
 import CreateAssign from "../pages/CreateAssign";
 import PrivateRoute from "../protected/PrivateRoute";
+import UpdateAssign from "../pages/UpdateAssign";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
             {
                 path: "/add-assign",
                 element: <PrivateRoute><CreateAssign></CreateAssign></PrivateRoute>
+            },
+            {
+                path: "/update-assign/:id",
+                element: <UpdateAssign></UpdateAssign>,
+                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             }
         ]
     },
