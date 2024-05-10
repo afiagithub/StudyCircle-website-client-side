@@ -1,7 +1,18 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
+import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleSigOut = () => {
+        logOut()
+            .then(() => {
+                toast.success("Logged Out")
+            })
+    }
+
     const links = <>
         <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
             : "border-2 border-transparent "} to="/">Home</NavLink></li>
@@ -30,12 +41,22 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className="flex flex-row gap-5">
-                    <NavLink className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
-                        hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]" to="/login">Login</NavLink>
-                    <NavLink className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
-                        hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]" to="/register">Register</NavLink>
-                </div>
+                {
+                    user ? <div className="flex flex-row gap-3">
+                        <img className="w-12 h-12 rounded-full"
+                            src={user.photoURL || 'https://i.ibb.co/QnTrVRz/icon.jpg'} alt="" />
+                        <NavLink onClick={handleSigOut} className="btn bg-[#874CCC] text-white px-4 border-2 border-[#874CCC] 
+                    hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]" to="/">LogOut</NavLink>
+
+                    </div> :
+                        <div className="flex flex-row gap-5">
+                            <NavLink className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
+                            hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]" to="/login">Login</NavLink>
+                            <NavLink className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
+                            hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]" to="/register">Register</NavLink>
+                        </div>
+
+                }
             </div>
         </div>
     );
