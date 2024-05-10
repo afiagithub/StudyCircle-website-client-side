@@ -9,6 +9,7 @@ import AssignDetails from "../pages/AssignDetails";
 import CreateAssign from "../pages/CreateAssign";
 import PrivateRoute from "../protected/PrivateRoute";
 import UpdateAssign from "../pages/UpdateAssign";
+import PostedAssign from "../pages/MyPost";
 
 const router = createBrowserRouter([
     {
@@ -25,8 +26,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/assignment',
-                element: <AllAssignments></AllAssignments>,
-                // loader: () => fetch('http://localhost:5000/all-assignment')
+                element: <AllAssignments></AllAssignments>
             },
             {
                 path: "/assignment/:id",
@@ -49,6 +49,10 @@ const router = createBrowserRouter([
                 path: "/update-assign/:id",
                 element: <UpdateAssign></UpdateAssign>,
                 loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+            },
+            {
+                path: "/posted-assignment",
+                element: <PrivateRoute><PostedAssign></PostedAssign></PrivateRoute>
             }
         ]
     },
