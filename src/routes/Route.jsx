@@ -6,6 +6,8 @@ import AllAssignments from "../pages/AllAssignments";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AssignDetails from "../pages/AssignDetails";
+import CreateAssign from "../pages/CreateAssign";
+import PrivateRoute from "../protected/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -23,11 +25,11 @@ const router = createBrowserRouter([
             {
                 path: '/assignment',
                 element: <AllAssignments></AllAssignments>,
-                loader: () => fetch('http://localhost:5000/all-assignment')
+                // loader: () => fetch('http://localhost:5000/all-assignment')
             },
             {
                 path: "/assignment/:id",
-                element: <AssignDetails></AssignDetails>,
+                element: <PrivateRoute><AssignDetails></AssignDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: "/add-assign",
+                element: <PrivateRoute><CreateAssign></CreateAssign></PrivateRoute>
             }
         ]
     },

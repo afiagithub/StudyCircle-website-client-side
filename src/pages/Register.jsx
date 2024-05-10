@@ -9,7 +9,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import SocialLogin from "../components/SocialLogin";
 
 const Register = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {createUser, updateUserProfile, setUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
@@ -35,9 +35,11 @@ const Register = () => {
             return;
         }
         createUser(email, pass)
-            .then(() => {
+            .then((result) => {
                 updateUserProfile(fullName, photo)
                     .then(() => {
+                        console.log(result)
+                        setUser({ ...result.user, photoURL: photo, displayName: fullName })                        
                         navigate('/')
                         toast.success("Successfully Registered")
                     });

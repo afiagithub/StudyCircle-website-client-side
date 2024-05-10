@@ -25,7 +25,7 @@ const Login = () => {
         const { email, pass } = data;
         signInUser(email, pass)
             .then((result) => {
-                if (result.user)
+                if (result.user)                    
                     navigate(`${from}`)
                 toast.success("Successfully Logged In")
             })

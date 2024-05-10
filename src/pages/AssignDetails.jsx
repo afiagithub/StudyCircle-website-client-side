@@ -28,7 +28,7 @@ const AssignDetails = () => {
 
                     </div>
                     <div className="pages font-bold space-y-2">
-                        <p>{due_date}</p>
+                        <p>{new Date(due_date).toLocaleDateString()}</p>
                         <p>{marks}</p>
                     </div>
                 </div>
