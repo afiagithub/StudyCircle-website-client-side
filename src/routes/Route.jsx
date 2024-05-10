@@ -5,6 +5,7 @@ import About from "../pages/About";
 import AllAssignments from "../pages/AllAssignments";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AssignDetails from "../pages/AssignDetails";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
                 path: '/assignment',
                 element: <AllAssignments></AllAssignments>,
                 loader: () => fetch('http://localhost:5000/all-assignment')
+            },
+            {
+                path: "/assignment/:id",
+                element: <AssignDetails></AssignDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
                 path: '/login',

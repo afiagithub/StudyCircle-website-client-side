@@ -1,7 +1,8 @@
 import { FiEdit2 } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
 
 const SingleAssignCard = ({ a }) => {
-    const { title, thumbnail, subject, marks, difficulty, due_date, description } = a;
+    const {_id, title, thumbnail, subject, marks, difficulty, due_date, description } = a;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img src={thumbnail} alt="Shoes" /></figure>
@@ -33,8 +34,8 @@ const SingleAssignCard = ({ a }) => {
                     </button>
                 </div>
             </div>
-            <button className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
-            hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]">View Details</button>
+            <NavLink to={`/assignment/${_id}`} className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
+            hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]">View Details</NavLink>
         </div>
     );
 };
