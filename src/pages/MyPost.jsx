@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
-
+import { FiEdit2 } from "react-icons/fi";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import Swal from 'sweetalert2'
+import { toast } from "react-toastify";
 
 const PostedAssign = () => {
     const [items, setItems] = useState([]);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     useEffect(() => {
         fetch(`http://localhost:5000/pending/${user.email}`)
             .then(res => res.json())
@@ -14,6 +17,43 @@ const PostedAssign = () => {
                 setItems(data)
             })
     }, [user])
+
+    const handleDelete = (_id, email) => {
+        console.log(_id, email);
+        if (email !== user.email) {
+            return toast.error("Action Not Permitted")
+        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/all-assignment/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            const restItems = items.filter(item => item._id !== _id)
+                            setItems(restItems)
+                            console.log(data)
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Assignment has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
     return (
         <div>
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
@@ -37,14 +77,18 @@ const PostedAssign = () => {
                                 <td>{item.subject}</td>
                                 <td>{item.difficulty}</td>
                                 <td>{item.mark} days</td>
-                                <td>{item.due_date}</td>
+                                <td>{new Date(item.due_date).toLocaleDateString()}</td>
                                 <td>
                                     <Link className="btn bg-primary text-white border-2 border-primary 
-                        hover:border-primary hover:bg-transparent hover:text-primary" to={`/update/${item._id}`}>Update</Link>
+                        hover:border-primary hover:bg-transparent hover:text-primary" to={`/update-assign/${item._id}`}>
+                                        <FiEdit2 />
+                                    </Link>
                                 </td>
                                 <td>
-                                    <button  className="btn bg-[#ff494a] text-white border-2 border-[#ff494a] 
-                        hover:border-[#ff494a] hover:bg-transparent hover:text-[#ff494a]">Delete</button>
+                                    <button onClick={() => handleDelete(item._id, item.a_creator.email)} className="btn bg-[#ff494a] text-white border-2 border-[#ff494a] 
+                        hover:border-[#ff494a] hover:bg-transparent hover:text-[#ff494a]">
+                                        <RiDeleteBin7Line />
+                                    </button>
                                 </td>
                             </tr>)
                         }
