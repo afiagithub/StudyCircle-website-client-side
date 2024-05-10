@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         rale: ['"Raleway"', "sans-serif"],
-        acme: ['"Acme"', "sans-serif"],
+        sans: ['"Josefin Sans"', "sans-serif"],
       },
     },
   },
