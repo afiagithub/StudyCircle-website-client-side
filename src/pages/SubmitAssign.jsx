@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const SubmitAssign = () => {
     const assignment = useLoaderData()
-    const {_id, title, mark, due_date} = assignment;
+    const {_id, title, mark, due_date, a_creator} = assignment;
     const { user } = useContext(AuthContext);
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -18,6 +18,7 @@ const SubmitAssign = () => {
         const total_mark = mark;
         const got_mark = '';
         const feedback = '';
+        const creator_email = a_creator.email;
         const submitter = {
             email: user?.email,
             name: user?.displayName
@@ -25,7 +26,7 @@ const SubmitAssign = () => {
 
         const submissionData = {
             assign_id, assign_title, assignment_file, short_note, status, total_mark, got_mark, due_date, feedback, 
-            submitter}
+            creator_email, submitter}
 
         console.log(submissionData)
 

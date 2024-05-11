@@ -16,7 +16,7 @@ import AttemptedAssign from "../pages/AttemptedAssign";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children: [
             {
                 path: '/',
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: "/assignment/:id",
                 element: <PrivateRoute><AssignDetails></AssignDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
                 path: '/login',
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path: "/update-assign/:id",
                 element: <UpdateAssign></UpdateAssign>,
-                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
                 path: "/posted-assignment",
@@ -59,11 +59,11 @@ const router = createBrowserRouter([
             {
                 path: "/submit-assign/:id",
                 element: <SubmitAssign></SubmitAssign>,
-                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
                 path: "/attempted-assign",
-                element: <AttemptedAssign></AttemptedAssign>
+                element: <PrivateRoute><AttemptedAssign></AttemptedAssign></PrivateRoute>
             }
         ]
     },
