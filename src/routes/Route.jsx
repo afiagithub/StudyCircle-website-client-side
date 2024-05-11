@@ -10,6 +10,8 @@ import CreateAssign from "../pages/CreateAssign";
 import PrivateRoute from "../protected/PrivateRoute";
 import UpdateAssign from "../pages/UpdateAssign";
 import PostedAssign from "../pages/MyPost";
+import SubmitAssign from "../pages/SubmitAssign";
+import AttemptedAssign from "../pages/AttemptedAssign";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +55,15 @@ const router = createBrowserRouter([
             {
                 path: "/posted-assignment",
                 element: <PrivateRoute><PostedAssign></PostedAssign></PrivateRoute>
+            },
+            {
+                path: "/submit-assign/:id",
+                element: <SubmitAssign></SubmitAssign>,
+                loader: ({params}) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+            },
+            {
+                path: "/attempted-assign",
+                element: <AttemptedAssign></AttemptedAssign>
             }
         ]
     },

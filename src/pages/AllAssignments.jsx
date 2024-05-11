@@ -12,12 +12,12 @@ const AllAssignments = () => {
         fetch(`http://localhost:5000/all-assignment`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setItems(data)
             })
     }, [])
     const handleDelete = (_id, email) => {
-        console.log(_id, email);
+        // console.log(_id, email);
         if(email !== user.email){
             return toast.error("Action Not Permitted")
         }

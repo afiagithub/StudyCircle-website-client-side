@@ -10,7 +10,7 @@ const PostedAssign = () => {
     const [items, setItems] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/pending/${user.email}`)
+        fetch(`http://localhost:5000/posted/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -76,7 +76,7 @@ const PostedAssign = () => {
                                 <td>{item.title}</td>
                                 <td>{item.subject}</td>
                                 <td>{item.difficulty}</td>
-                                <td>{item.mark} days</td>
+                                <td>{item.mark}</td>
                                 <td>{new Date(item.due_date).toLocaleDateString()}</td>
                                 <td>
                                     <Link className="btn bg-primary text-white border-2 border-primary 

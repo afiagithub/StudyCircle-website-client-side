@@ -1,13 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 
 const AssignDetails = () => {
     const assignmentData = useLoaderData()
-    const {title, thumbnail, subject, marks, difficulty, due_date, description } = assignmentData;
+    const {_id, title, image, subject, mark, difficulty, due_date, description } = assignmentData;
     return (
         <div className="hero-content flex-col lg:flex-row lg:justify-start lg:items-start gap-10">
             <div className="lg:w-1/2 mx-auto flex flex-col justify-center rounded-3xl">
-                <img src={thumbnail} className="rounded-lg shadow-2xl w-full" />
+                <img src={image} className="rounded-lg shadow-2xl w-full" />
             </div>
             <div className="lg:w-3/5">
                 <h1 className="text-4xl font-bold font-play">{title}</h1>
@@ -29,11 +29,11 @@ const AssignDetails = () => {
                     </div>
                     <div className="pages font-bold space-y-2">
                         <p>{new Date(due_date).toLocaleDateString()}</p>
-                        <p>{marks}</p>
+                        <p>{mark}</p>
                     </div>
                 </div>
-                <button className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
-                hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]">Take Assignment</button>
+                <Link to={`/submit-assign/${_id}`} className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
+                hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]">Take Assignment</Link>
             </div>
         </div>
     );
