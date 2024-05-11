@@ -12,6 +12,7 @@ import UpdateAssign from "../pages/UpdateAssign";
 import PostedAssign from "../pages/MyPost";
 import SubmitAssign from "../pages/SubmitAssign";
 import AttemptedAssign from "../pages/AttemptedAssign";
+import PendingAssign from "../pages/PendingAssign";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: "/attempted-assign",
                 element: <PrivateRoute><AttemptedAssign></AttemptedAssign></PrivateRoute>
+            },
+            {
+                path: "/pending-assign",
+                element: <PrivateRoute><PendingAssign></PendingAssign></PrivateRoute>
             }
         ]
     },

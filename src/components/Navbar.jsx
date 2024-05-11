@@ -22,6 +22,8 @@ const Navbar = () => {
             : "border-2 border-transparent"} to="/assignment">Assignments</NavLink></li>
         <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
             : "border-2 border-transparent"} to="/add-assign">Create Assignments</NavLink></li>
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+            : "border-2 border-transparent"} to="/pending-assign">Pending Assignments</NavLink></li>
 
     </>
     return (
