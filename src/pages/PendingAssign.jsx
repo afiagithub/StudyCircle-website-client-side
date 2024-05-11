@@ -40,7 +40,7 @@ const PendingAssign = () => {
                                 <td>{new Date(item.due_date).toLocaleDateString()}</td>
                                 <td>
                                     <Link className="btn bg-primary text-white border-2 border-primary 
-                        hover:border-primary hover:bg-transparent hover:text-primary" to='/'>
+                        hover:border-primary hover:bg-transparent hover:text-primary" to={`/mark-assign/${item._id}`}>
                                         Give Mark
                                     </Link>
                                 </td>

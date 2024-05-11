@@ -3,11 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 
 const SingleAssignCard = ({ a, handleDelete }) => {
     const {_id, title, image, subject, mark, difficulty, due_date, description, a_creator } = a;
+    // const short_desc = description.substring(0, 50)
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 h-full bg-base-100 shadow-xl">
             <figure><img className="h-72" src={image} alt="Shoes" /></figure>
             <div className="card-body p-6 flex flex-row justify-between gap-2">
-                <div>
+                <div className="w-full">
                     <div className="card-actions justify-start mb-4">
                         <div className="badge bg-[#A91D3A] font-bold text-white py-3">{subject}</div>
                         <div className="badge bg-[#874CCC] font-bold text-white py-3">{difficulty}</div>
@@ -16,9 +17,9 @@ const SingleAssignCard = ({ a, handleDelete }) => {
                         <h2 className="card-title">
                             {title}
                         </h2>
-                        <p title={description} className="text-sm mt-3 text-gray-600">{description.substring(0, 50)}...</p>
+                        {/* <p title={description} className="text-sm mt-3 text-gray-600">{short_desc}...</p> */}
                     </div>
-                    <div className="flex flex-row justify-between items-center">
+                    <div className="flex flex-row justify-between items-center gap-5 w-full">
                         <p className="text-lg font-bold text-[#A91D3A]">
                             <span className="font-normal text-base text-black">Marks:</span> {mark}</p>
                         <p className="text-lg font-bold text-[#A91D3A]">

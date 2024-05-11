@@ -13,6 +13,7 @@ import PostedAssign from "../pages/MyPost";
 import SubmitAssign from "../pages/SubmitAssign";
 import AttemptedAssign from "../pages/AttemptedAssign";
 import PendingAssign from "../pages/PendingAssign";
+import MarkAssign from "../pages/MarkAssign";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
             {
                 path: "/pending-assign",
                 element: <PrivateRoute><PendingAssign></PendingAssign></PrivateRoute>
+            },
+            {
+                path: "/mark-assign/:id",
+                element: <PrivateRoute><MarkAssign></MarkAssign></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/submission/${params.id}`)
             }
         ]
     },

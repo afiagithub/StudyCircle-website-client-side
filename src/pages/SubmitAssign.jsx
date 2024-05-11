@@ -59,7 +59,8 @@ const SubmitAssign = () => {
             <form onSubmit={handleSubmit}>
                 <div className="w-full flex flex-col gap-5">
                     <div>
-                        <input name='assignment_file' type="file" placeholder='Enter your assignment file here'
+                        <input name='assignment_file' type="url" placeholder='Enter your assignment file link here' 
+                        required
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
                     </div>
                     <div>

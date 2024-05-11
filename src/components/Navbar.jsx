@@ -56,6 +56,9 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li className="font-rale font-bold text-sm py-3">Hello,
+                                    <span className="text-rose-500">{user.displayName}</span>
+                                </li>
                                 <li><NavLink to='/posted-assignment'>My Posted Assignments</NavLink></li>
                                 <li><NavLink to="/attempted-assign">Attempted Assignments</NavLink></li>
                                 <li><NavLink onClick={handleSigOut} to="/">Logout</NavLink></li>

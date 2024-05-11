@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/bundle";
 import { Autoplay, Navigation } from 'swiper/modules';
 import "../custom.css"
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
@@ -16,8 +17,9 @@ const Banner = () => {
                             <span className="text-[#A91D3A] text-4xl md:text-5xl lg:text-7xl font-black font-cav"> Success </span>
                             Together Through Collaborative Learning
                         </h1>
-                        <button className="mt-5 btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
-                            hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]">Take a Challenge</button>
+                        <Link to="/assignment" className="mt-5 btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
+                            hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]">
+                                Take a Challenge</Link>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>

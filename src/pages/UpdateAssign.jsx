@@ -40,7 +40,7 @@ const UpdateAssign = () => {
                 if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: "Success",
-                        text: "Updated Tourist Spot",
+                        text: "Updated Assignment Data",
                         icon: "success"
                     });
                 }
