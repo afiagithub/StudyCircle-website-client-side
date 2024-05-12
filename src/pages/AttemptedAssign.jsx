@@ -20,6 +20,7 @@ const AttemptedAssign = () => {
                     <thead>
                         <tr className="font-rale lg:text-lg">
                             <th></th>
+                            <th>Submission</th>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Total Mark</th>
@@ -32,6 +33,7 @@ const AttemptedAssign = () => {
                         {
                             items.map((item, idx) => <tr key={item._id} className="hover">
                                 <th>{idx + 1}</th>
+                                <td><iframe src={item.assignment_file} className="w-60"></iframe></td>
                                 <td>{item.assign_title}</td>
                                 <td>{item.status}</td>
                                 <td>{item.total_mark}</td>
