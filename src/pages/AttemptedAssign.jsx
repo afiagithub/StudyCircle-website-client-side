@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AttemptedAssign = () => {
     const [items, setItems] = useState([]);
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
     useEffect(() => {
-        axios.get(`http://localhost:5000/attempted/${user.email}`, {withCredentials: true})
+        axiosSecure.get(`/attempted/${user.email}`)
         .then(res => {
             setItems(res.data)
         })

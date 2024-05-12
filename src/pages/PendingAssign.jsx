@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PendingAssign = () => {
     const [items, setItems] = useState([]);
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        axios.get(`http://localhost:5000/pending/${user.email}`, {withCredentials: true})
+        axiosSecure.get(`/pending/${user.email}`)
             .then(res => {
                 const restItems = res.data.filter(d => d.status === 'Pending');
                 console.log(restItems)

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 
@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
+    const axiosSecure = useAxiosSecure()
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -57,7 +58,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
             if (currentUser) {
                 const loggedUser = { email: currentUser.email }
-                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                axiosSecure.post('/jwt', loggedUser)
                     .then(res => {
                         console.log(res.data);
                     })

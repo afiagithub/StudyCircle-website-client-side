@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import Swal from 'sweetalert2'
-import { AuthContext } from '../providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const SubmitAssign = () => {
     const assignment = useLoaderData()
     const {_id, title, mark, due_date, a_creator} = assignment;
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
