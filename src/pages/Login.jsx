@@ -2,14 +2,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { FaRegEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import SocialLogin from "../components/SocialLogin"
-import { AuthContext } from "../providers/AuthProvider";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state || '/';

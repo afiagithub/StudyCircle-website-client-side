@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import Swal from 'sweetalert2'
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const PostedAssign = () => {
     const [items, setItems] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     useEffect(() => {
         fetch(`http://localhost:5000/posted/${user.email}`)
             .then(res => res.json())

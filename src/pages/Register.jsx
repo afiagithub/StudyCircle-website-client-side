@@ -2,14 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { FaRegEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "../providers/AuthProvider";
 import SocialLogin from "../components/SocialLogin";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
-    const {createUser, updateUserProfile, setUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile, setUser} = useAuth();
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);

@@ -2,12 +2,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { LiaFacebookF } from "react-icons/lia";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const SocialLogin = () => {
-    const { googleLogin, githubLogin, facebookLogin } = useContext(AuthContext);
+    const { googleLogin, githubLogin, facebookLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state || '/';

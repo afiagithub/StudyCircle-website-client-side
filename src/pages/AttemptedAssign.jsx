@@ -1,15 +1,20 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const AttemptedAssign = () => {
     const [items, setItems] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     useEffect(() => {
-        fetch(`http://localhost:5000/attempted/${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setItems(data)
-            })
+        axios.get(`http://localhost:5000/attempted/${user.email}`, {withCredentials: true})
+        .then(res => {
+            setItems(res.data)
+        })
+        // fetch(`http://localhost:5000/attempted/${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setItems(data)
+        //     })
     }, [user])
     
     return (
@@ -20,7 +25,7 @@ const AttemptedAssign = () => {
                     <thead>
                         <tr className="font-rale lg:text-lg">
                             <th></th>
-                            <th>Submission</th>
+                            {/* <th>Submission</th> */}
                             <th>Title</th>
                             <th>Status</th>
                             <th>Total Mark</th>
@@ -33,7 +38,7 @@ const AttemptedAssign = () => {
                         {
                             items.map((item, idx) => <tr key={item._id} className="hover">
                                 <th>{idx + 1}</th>
-                                <td><iframe src={item.assignment_file} className="w-60"></iframe></td>
+                                {/* <td><iframe src={item.assignment_file} className="w-60"></iframe></td> */}
                                 <td>{item.assign_title}</td>
                                 <td>{item.status}</td>
                                 <td>{item.total_mark}</td>

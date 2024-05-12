@@ -1,12 +1,12 @@
 import SingleAssignCard from "../components/SingleAssignCard";
 import Swal from 'sweetalert2'
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const AllAssignments = () => {
     const [items, setItems] = useState([]);
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
 
     useEffect(() => {
         fetch(`http://localhost:5000/all-assignment`)

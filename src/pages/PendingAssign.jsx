@@ -1,18 +1,25 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const PendingAssign = () => {
     const [items, setItems] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     useEffect(() => {
-        fetch(`http://localhost:5000/pending/${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                const restItems = data.filter(d => d.status === 'Pending');
+        axios.get(`http://localhost:5000/pending/${user.email}`, {withCredentials: true})
+            .then(res => {
+                const restItems = res.data.filter(d => d.status === 'Pending');
                 console.log(restItems)
                 setItems(restItems)
             })
+        // fetch(`http://localhost:5000/pending/${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         const restItems = data.filter(d => d.status === 'Pending');
+        //         console.log(restItems)
+        //         setItems(restItems)
+        //     })
     }, [user])
 
 
