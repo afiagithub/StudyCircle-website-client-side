@@ -1,7 +1,7 @@
-import { useContext } from 'react';
 import Swal from 'sweetalert2'
-import { AuthContext } from '../providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const MarkAssign = () => {
     const assignment = useLoaderData()
@@ -14,6 +14,10 @@ const MarkAssign = () => {
         const status = 'Completed';
         const got_mark = form.got_mark.value;
         const feedback = form.feedback.value;
+
+        if(got_mark == ''){
+            return toast.error("Provide obtained mark for the assignment") 
+        }
 
         const updatedMark = {
             assign_id, assign_title, assignment_file, short_note, status, total_mark, got_mark, due_date, feedback,
@@ -49,26 +53,30 @@ const MarkAssign = () => {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="w-full flex flex-col gap-5">
-                    <div>
+                    <div className='flex flex-col gap-3'>
+                        <label className='text-lg font-semibold text-primary'>Assignment File URL</label>
                         <input name='assignment_file' type="text" defaultValue={assignment_file} disabled
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-3'>
+                    <label className='text-lg font-semibold text-primary'>Short Notes</label>
                         <textarea name="short_note" cols="30" rows="5" defaultValue={short_note} disabled
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50"></textarea>
                     </div>
-                    <div>
-                        <input name='got_mark' type="number" placeholder='Enter Obtained Mark' required
+                    <div className='flex flex-col gap-3'>
+                    <label className='text-lg font-semibold text-primary'>Obtained Mark</label>
+                        <input name='got_mark' type="number" placeholder='Enter Obtained Mark'
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-3'>
+                    <label className='text-lg font-semibold text-primary'>Feedback (if any)</label>
                         <textarea name="feedback" cols="30" rows="5" placeholder='Give Feedback'
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50"></textarea>
                     </div>
                 </div>
                 <div>
                     <input type="submit" value="Mark Assignment"
-                        className="w-full px-8 py-3 mt-3 bg-[#A91D3A] text-white text-lg font-semibold rounded-xl 
+                        className="w-full px-8 py-3 mt-6 bg-[#A91D3A] text-white text-lg font-semibold rounded-xl 
                             border-2 border-[#A91D3A] hover:border-[#A91D3A] hover:bg-transparent 
                             hover:text-[#A91D3A]" />
                 </div>

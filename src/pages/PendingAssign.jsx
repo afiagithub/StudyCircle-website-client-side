@@ -23,14 +23,13 @@ const PendingAssign = () => {
         //     })
     }, [user])
 
-
     return (
-        <div>
+        <div className="py-5">
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="font-rale lg:text-lg">
+                        <tr className="font-rale lg:text-lg text-primary">
                             <th></th>
                             <th>Title</th>
                             <th>Name</th>
@@ -47,8 +46,8 @@ const PendingAssign = () => {
                                 <td>{item.total_mark}</td>
                                 <td>{new Date(item.due_date).toLocaleDateString()}</td>
                                 <td>
-                                    <Link className="btn bg-primary text-white border-2 border-primary 
-                        hover:border-primary hover:bg-transparent hover:text-primary" to={`/mark-assign/${item._id}`}>
+                                    <Link className="btn bg-[#A91D3A] text-white border-2 border-[#A91D3A] 
+                        hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]" to={`/mark-assign/${item._id}`}>
                                         Give Mark
                                     </Link>
                                 </td>

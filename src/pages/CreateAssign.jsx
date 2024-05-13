@@ -3,6 +3,8 @@ import Swal from 'sweetalert2'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from '../hooks/useAuth';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateAssign = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -23,12 +25,20 @@ const CreateAssign = () => {
             photo: user?.photoURL
         }
 
+        if (title === '') {
+            return toast.error("Provide a meaningful title for the assignment")
+        }
+
+        if (mark === '') {
+            return toast.error("Provide total mark for the assignment")
+        }
+
         const newAssignmentData = {
             title, subject, difficulty, mark, due_date, image, description, a_creator
         }
 
         console.log(newAssignmentData)
-        
+
 
         fetch("http://localhost:5000/all-assignment", {
             method: "POST",
@@ -57,43 +67,58 @@ const CreateAssign = () => {
             </div>
             <form onSubmit={handleAddSpot}>
                 <div className="w-full flex flex-col gap-5">
-                    <div className="flex gap-3">
+                    <div className="flex flex-col gap-3">
+                        <label className='text-lg font-semibold text-primary'>Assignment Title *</label>
                         <input type="text" name="title" placeholder="Enter Assignment Title"
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
-                    </div>                    
-                    <div className="flex gap-3">
-                        <select name="subject" defaultValue="Programming" className="w-1/2 px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" >                            
-                            <option value="English">English</option>
-                            <option value="Programming">Programming</option>
-                            <option value="Arts">Arts</option>
-                            <option value="Biology">Biology</option>
-                            <option value="Physics">Physics</option>
-                            <option value="Chemistry">Chemistry</option>
-                        </select>
-                        <select name="difficulty" defaultValue="Easy" className="w-1/2 px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" >                            
-                            <option value="Easy">Easy</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Hard">Hard</option>
-                        </select>
+                    </div>
+                    <div className="flex gap-3 w-full">
+                        <div className='flex flex-col gap-3 w-1/2'>
+                            <label className='text-lg font-semibold text-primary'>Subject</label>
+                            <select name="subject" defaultValue="Programming" className=" px-3 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50" >
+                                <option value="English">English</option>
+                                <option value="Programming">Programming</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                            </select>
+                        </div>
+                        <div className='flex flex-col gap-3 w-1/2'>
+                            <label className='text-lg font-semibold text-primary'>Difficulty</label>
+                            <select name="difficulty" defaultValue="Easy" className="px-3 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50" >
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex gap-3">
-                        <input type="number" name="mark" placeholder="Enter Toal Mark"
-                            className="w-1/2 px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
-                        <DatePicker className='border-2 w-64 rounded-md dark:border-gray-300 dark:bg-gray-50 p-3' 
-                        selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <div className='flex flex-col gap-3 w-1/2'>
+                            <label className='text-lg font-semibold text-primary'>Total Mark *</label>
+                            <input type="number" name="mark" placeholder="Enter Toal Mark"
+                                className="px-3 py-3 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
+                        </div>
+                        <div className='flex flex-col gap-3 w-1/2'>
+                            <label className='text-lg font-semibold text-primary'>Due Date</label>
+                            <DatePicker className='border-2 w-64 rounded-md dark:border-gray-300 dark:bg-gray-50 p-3'
+                                selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col gap-3">
+                        <label className='text-lg font-semibold text-primary'>Image URL</label>
                         <input type="text" name="image" placeholder="Enter Image URL"
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50" />
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-3'>
+                        <label className='text-lg font-semibold text-primary'>Short Description</label>
                         <textarea name="description" cols="30" rows="5" placeholder="Write a short description"
                             className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50"></textarea>
                     </div>
                 </div>
                 <div>
                     <input type="submit" value="Create Assignment"
-                        className="w-full px-8 py-3 mt-3 bg-[#A91D3A] text-white text-lg font-semibold rounded-xl 
+                        className="w-full px-8 py-3 mt-6 bg-[#A91D3A] text-white text-lg font-semibold rounded-xl 
                             border-2 border-[#A91D3A] hover:border-[#A91D3A] hover:bg-transparent 
                             hover:text-[#A91D3A]" />
                 </div>

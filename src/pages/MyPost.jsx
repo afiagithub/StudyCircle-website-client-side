@@ -5,17 +5,23 @@ import { RiDeleteBin7Line } from "react-icons/ri";
 import Swal from 'sweetalert2'
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PostedAssign = () => {
     const [items, setItems] = useState([]);
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        fetch(`http://localhost:5000/posted/${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setItems(data)
+        axiosSecure.get(`/posted/${user.email}`)
+            .then(res => {
+                setItems(res.data)
             })
+        // fetch(`http://localhost:5000/posted/${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setItems(data)
+        //     })
     }, [user])
 
     const handleDelete = (_id, email) => {
@@ -55,12 +61,12 @@ const PostedAssign = () => {
         });
     }
     return (
-        <div>
+        <div className="py-5">
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="font-rale lg:text-lg">
+                        <tr className="font-rale lg:text-lg text-primary">
                             <th></th>
                             <th>Title</th>
                             <th>Subject</th>
@@ -75,18 +81,24 @@ const PostedAssign = () => {
                                 <th>{idx + 1}</th>
                                 <td>{item.title}</td>
                                 <td>{item.subject}</td>
-                                <td>{item.difficulty}</td>
+                                <td className={item.difficulty === 'Easy' ? 'badge mt-6 ml-5 text-base-100 bg-green-600'
+                                    : item.difficulty === 'Medium' ? 'badge mt-6 ml-5 text-base-100 bg-primary'
+                                        : 'badge mt-6 ml-5 text-base-100 bg-red-600'}>
+                                    {item.difficulty}
+                                </td>
                                 <td>{item.mark}</td>
                                 <td>{new Date(item.due_date).toLocaleDateString()}</td>
                                 <td>
-                                    <Link className="btn bg-primary text-white border-2 border-primary 
-                        hover:border-primary hover:bg-transparent hover:text-primary" to={`/update-assign/${item._id}`}>
+                                    <Link className="btn btn-square bg-primary text-white border-2 border-primary 
+                        hover:border-primary hover:bg-transparent hover:text-primary text-xl"
+                                        to={`/update-assign/${item._id}`}>
                                         <FiEdit2 />
                                     </Link>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDelete(item._id, item.a_creator.email)} className="btn bg-[#ff494a] text-white border-2 border-[#ff494a] 
-                        hover:border-[#ff494a] hover:bg-transparent hover:text-[#ff494a]">
+                                    <button onClick={() => handleDelete(item._id, item.a_creator.email)}
+                                        className="btn btn-square bg-[#ff494a] text-white border-2 border-[#ff494a] 
+                                    hover:border-[#ff494a] hover:bg-transparent hover:text-[#ff494a] text-xl">
                                         <RiDeleteBin7Line />
                                     </button>
                                 </td>

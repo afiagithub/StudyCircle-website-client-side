@@ -14,11 +14,13 @@ import SubmitAssign from "../pages/SubmitAssign";
 import AttemptedAssign from "../pages/AttemptedAssign";
 import PendingAssign from "../pages/PendingAssign";
 import MarkAssign from "../pages/MarkAssign";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/update-assign/:id",
-                element: <UpdateAssign></UpdateAssign>,
+                element: <PrivateRoute><UpdateAssign></UpdateAssign></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/submit-assign/:id",
-                element: <SubmitAssign></SubmitAssign>,
+                element: <PrivateRoute><SubmitAssign></SubmitAssign></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
             },
             {
