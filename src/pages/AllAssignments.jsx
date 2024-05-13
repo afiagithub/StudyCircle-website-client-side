@@ -6,27 +6,25 @@ import useAuth from "../hooks/useAuth";
 
 const AllAssignments = () => {
     const [items, setItems] = useState([]);
-    const [filterVal, setFilterVal] = useState(0)
+    const [urlPath, setUrlPath] = useState('http://localhost:5000/all-assignment');
     const { user } = useAuth();
 
     const handleSort = (e) => {
         const criteria = e.target.value;
-        setFilterVal(criteria)
+        console.log(criteria)
+        if (criteria) {
+            setUrlPath(`http://localhost:5000/assignments/${criteria}`);
+        }
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/all-assignment`)
+        fetch(`${urlPath}`)
             .then(res => res.json())
             .then(data => {
-                if (filterVal) {
-                    const restItems = data.filter(d => d.difficulty === filterVal);
-                    setItems(restItems)
-                }
-                else{
-                    setItems(data)
-                }                
+                console.log(data)
+                setItems(data)
             })
-    }, [filterVal])
+    }, [urlPath])
 
     const handleDelete = (_id, email) => {
         // console.log(_id, email);
