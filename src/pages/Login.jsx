@@ -39,7 +39,7 @@ const Login = () => {
                 <title>TourifyNow | Login</title>
             </Helmet> */}
             <div className="mb-8 text-center">
-                <h1 className="my-3 text-4xl font-bold text-[#874CCC]">Sign in</h1>
+                <h1 className="my-3 text-4xl font-bold text-primary">Sign in</h1>
                 <p className="text-sm dark:text-black">Sign in to access your account</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
@@ -67,12 +67,12 @@ const Login = () => {
                 <div className="space-y-2">
                     <div>
                         <input type="submit" value="Sign In"
-                            className="w-full px-8 py-3 bg-[#874CCC] text-white text-lg font-semibold rounded-xl 
-                            border-2 border-[#874CCC] hover:border-[#874CCC] hover:bg-transparent 
-                            hover:text-[#874CCC]" />
+                            className="w-full px-8 py-3 bg-primary text-white text-lg font-semibold rounded-xl 
+                            border-2 border-primary hover:border-primary hover:bg-transparent 
+                            hover:text-primary" />
                     </div>
                     <p className="px-6 text-sm text-center dark:text-black">Don't have an account yet?
-                        <Link to="/register" className="hover:underline dark:text-[#874CCC] font-bold">
+                        <Link to="/register" className="hover:underline dark:text-primary font-bold">
                             Sign up</Link>.
                     </p>
                 </div>

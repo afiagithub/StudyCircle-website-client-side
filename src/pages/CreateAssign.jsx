@@ -53,7 +53,7 @@ const CreateAssign = () => {
         <div className='flex flex-col max-w-2xl mx-auto p-6 rounded-md sm:p-10 mb-10'>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-[#A91D3A]">Create Assignment</h1>
-                <p className="text-sm dark:text-[#874CCC]">Provide all necessary information below</p>
+                <p className="text-sm dark:text-primary">Provide all necessary information below</p>
             </div>
             <form onSubmit={handleAddSpot}>
                 <div className="w-full flex flex-col gap-5">

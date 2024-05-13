@@ -53,7 +53,7 @@ const SubmitAssign = () => {
         <div className='flex flex-col max-w-2xl mx-auto p-6 rounded-md sm:p-10 mb-10'>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-[#A91D3A]">Submit Assignment</h1>
-                <p className="text-sm dark:text-[#874CCC]">Provide assignment file and other information below</p>
+                <p className="text-sm dark:text-primary">Provide assignment file and other information below</p>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="w-full flex flex-col gap-5">

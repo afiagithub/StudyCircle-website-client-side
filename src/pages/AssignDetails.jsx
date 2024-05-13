@@ -32,8 +32,8 @@ const AssignDetails = () => {
                         <p>{mark}</p>
                     </div>
                 </div>
-                <Link to={`/submit-assign/${_id}`} className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
-                hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]">Take Assignment</Link>
+                <Link to={`/submit-assign/${_id}`} className="btn bg-primary text-white text-lg border-2 border-primary 
+                hover:border-primary hover:bg-transparent hover:text-primary">Take Assignment</Link>
             </div>
         </div>
     );

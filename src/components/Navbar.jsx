@@ -1,9 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+    const [theme, setTheme] = useState(['light']);
+
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+        const localTheme = localStorage.getItem('theme');
+        document.querySelector('html').setAttribute('data-theme', localTheme);
+    }, [theme]);
+
+    const handleToggle = (e) => {
+        if (e.target.checked) {
+            setTheme("dark");
+        }
+        else {
+            setTheme("light");
+        }
+    }
     const { user, logOut } = useAuth();
     const handleSigOut = () => {
         logOut()
@@ -13,15 +30,15 @@ const Navbar = () => {
     }
 
     const links = <>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent "} to="/">Home</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent"} to="/about">About</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent"} to="/assignment">Assignments</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent"} to="/add-assign">Create Assignments</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-[#874CCC] text-[#874CCC]"
+        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent"} to="/pending-assign">Pending Assignments</NavLink></li>
 
     </>
@@ -36,8 +53,8 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-2xl text-sans text-[#A91D3A] font-bold">
-                    <span className="text-[#874CCC]">Study</span>Circle</a>
+                <Link href="/" className="btn btn-ghost text-2xl text-sans text-[#A91D3A] font-bold">
+                    <span className="text-primary">Study</span>Circle</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -65,14 +82,21 @@ const Navbar = () => {
                         </div>
 
                     </div> :
-                        <div className="flex flex-row gap-5">
-                            <NavLink className="btn bg-[#A91D3A] text-white text-lg border-2 border-[#A91D3A] 
+                        <div className="flex flex-row gap-4">
+                            <NavLink className="btn bg-[#A91D3A] text-white border-2 border-[#A91D3A] 
                             hover:border-[#A91D3A] hover:bg-transparent hover:text-[#A91D3A]" to="/login">Login</NavLink>
-                            <NavLink className="btn bg-[#874CCC] text-white text-lg border-2 border-[#874CCC] 
-                            hover:border-[#874CCC] hover:bg-transparent hover:text-[#874CCC]" to="/register">Register</NavLink>
+                            <NavLink className="btn bg-primary text-white border-2 border-primary 
+                            hover:border-primary hover:bg-transparent hover:text-primary" to="/register">Register</NavLink>
                         </div>
 
                 }
+                <label className="cursor-pointer grid place-items-center ml-3">
+                    <input onClick={handleToggle} type="checkbox" value="dark" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
+                    <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
+                    <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </label>
             </div>
         </div>
     );
