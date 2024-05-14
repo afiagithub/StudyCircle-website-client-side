@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import SocialLogin from "../components/SocialLogin";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUser, updateUserProfile, setUser } = useAuth();
@@ -50,6 +51,9 @@ const Register = () => {
     }
     return (
         <div className="flex flex-col max-w-md mx-auto p-6 rounded-md sm:p-10 mb-10 font-rale">
+            <Helmet>
+                <title>StudyCircle | Register</title>
+            </Helmet>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-primary font-sans">Become A Member</h1>
                 <p className="text-sm dark:text-black">Create your account By Providing Information Below</p>

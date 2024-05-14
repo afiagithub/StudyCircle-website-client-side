@@ -2,15 +2,18 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateAssign = () => {
     const assignData = useLoaderData();
     const { _id, title, image, subject, mark, difficulty, due_date, description, a_creator } = assignData;
+    const navigate = useNavigate();
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date(due_date));
 
     const handleUpdateSpot = (event) => {
         event.preventDefault();
@@ -38,7 +41,7 @@ const UpdateAssign = () => {
         console.log(updatedAssignmentData)
 
 
-        fetch(`http://localhost:5000/all-assignment/${_id}`, {
+        fetch(`https://studycircle-server.vercel.app/all-assignment/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -53,11 +56,15 @@ const UpdateAssign = () => {
                         text: "Updated Assignment Data",
                         icon: "success"
                     });
+                    navigate('/assignment')
                 }
             })
     }
     return (
         <div className='flex flex-col max-w-2xl mx-auto p-6 rounded-md sm:p-10 mb-10'>
+            <Helmet>
+                <title>StudyCircle | Update Assignment</title>
+            </Helmet>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-[#A91D3A]">Update Assignment</h1>
                 <p className="text-sm dark:text-primary">Provide all necessary information below</p>
@@ -99,7 +106,7 @@ const UpdateAssign = () => {
                         <div className='flex flex-col gap-3 w-1/2'>
                             <label className='text-lg font-semibold text-primary'>Due Date</label>
                             <DatePicker className='border-2 w-64 rounded-md dark:border-gray-300 dark:bg-gray-50 p-3'
-                                selected={due_date} onChange={(date) => setStartDate(date)} />
+                                selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                     </div>
                     <div className="flex flex-col gap-3">
@@ -123,5 +130,17 @@ const UpdateAssign = () => {
         </div>
     );
 };
+
+UpdateAssign.propTypes = {
+    assignData: PropTypes.object,
+    title: PropTypes.string,
+    a_creator: PropTypes.obj,
+    image: PropTypes.string,
+    subject: PropTypes.string,
+    mark: PropTypes.string,
+    difficulty: PropTypes.string,
+    due_date: PropTypes.string,
+    description: PropTypes.string,
+}
 
 export default UpdateAssign;

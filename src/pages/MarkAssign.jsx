@@ -2,6 +2,8 @@ import Swal from 'sweetalert2'
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet-async';
 
 const MarkAssign = () => {
     const assignment = useLoaderData()
@@ -15,8 +17,8 @@ const MarkAssign = () => {
         const got_mark = form.got_mark.value;
         const feedback = form.feedback.value;
 
-        if(got_mark == ''){
-            return toast.error("Provide obtained mark for the assignment") 
+        if(got_mark == '' || got_mark > parseInt(total_mark)){
+            return toast.error("Provide proper obtained mark for the assignment") 
         }
 
         const updatedMark = {
@@ -27,7 +29,7 @@ const MarkAssign = () => {
         console.log(updatedMark)
 
 
-        fetch(`http://localhost:5000/submission/${_id}`, {
+        fetch(`https://studycircle-server.vercel.app/submission/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -47,6 +49,9 @@ const MarkAssign = () => {
     }
     return (
         <div className='flex flex-col max-w-2xl mx-auto p-6 rounded-md sm:p-10 mb-10'>
+            <Helmet>
+                <title>StudyCircle | Mark Assignment</title>
+            </Helmet>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-[#A91D3A]">Mark Assignment</h1>
                 <p className="text-sm dark:text-primary">Check the files and mark the assignment</p>
@@ -84,5 +89,18 @@ const MarkAssign = () => {
         </div>
     );
 };
+
+MarkAssign.propTypes = {
+    assignment: PropTypes.object,
+    assign_id: PropTypes.string,
+    assign_title: PropTypes.string,
+    assignment_file: PropTypes.string,
+    short_note: PropTypes.string,
+    total_mark: PropTypes.string,
+    due_date: PropTypes.string,
+    description: PropTypes.string,
+    creator_email: PropTypes.string,
+    submitter: PropTypes.obj,
+}
 
 export default MarkAssign;

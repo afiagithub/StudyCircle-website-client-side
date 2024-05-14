@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from 'react-helmet-async';
 
 const CreateAssign = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -37,10 +38,10 @@ const CreateAssign = () => {
             title, subject, difficulty, mark, due_date, image, description, a_creator
         }
 
-        console.log(newAssignmentData)
+        // console.log(newAssignmentData)
 
 
-        fetch("http://localhost:5000/all-assignment", {
+        fetch("https://studycircle-server.vercel.app/all-assignment", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -61,6 +62,9 @@ const CreateAssign = () => {
     }
     return (
         <div className='flex flex-col max-w-2xl mx-auto p-6 rounded-md sm:p-10 mb-10'>
+            <Helmet>
+                <title>StudyCircle | Create Assignment</title>
+            </Helmet>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold text-[#A91D3A]">Create Assignment</h1>
                 <p className="text-sm dark:text-primary">Provide all necessary information below</p>

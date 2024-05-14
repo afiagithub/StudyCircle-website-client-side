@@ -18,10 +18,13 @@ const Banner = () => {
                 <SwiperSlide>
                     <div className="slider slider1 flex flex-col items-center justify-center lg:justify-start">
                         <h1 className="lg:mt-24 text-center text-3xl md:text-4xl lg:text-5xl 
-                        font-bold w-4/5 lg:w-3/5 capitalize text-primary">Unlock
-                            <span className="text-[#A91D3A] text-4xl md:text-5xl lg:text-7xl font-bold font-rale"> Success </span>
-                            Together Through Collaborative Learning
+                        font-bold w-4/5 lg:w-3/5 capitalize text-primary">Learn Together,
+                            <span className="text-[#A91D3A] text-4xl md:text-5xl lg:text-7xl font-bold font-rale"> Succeed </span>
+                            Together
                         </h1>
+                        <p className="text-center w-3/5 mx-auto text-gray-100">At StudyCircle, we believe in the power of collaborative learning.
+                            Join our community to connect with peers, share knowledge
+                            through group study.</p>
                         {bannerBtn}
                     </div>
                 </SwiperSlide>
@@ -34,6 +37,9 @@ const Banner = () => {
                             <span className="text-[#A91D3A] text-4xl md:text-5xl lg:text-6xl font-bold font-rale"> 6+ </span>
                             different Subjects
                         </h1>
+                        <p className="text-center w-3/5 mx-auto text-gray-100">StudyCircle brings the
+                            classroom to you. Create assignments, complete assignments, and
+                            engage with fellow students anytime, anywhere.</p>
                         {bannerBtn}
                     </div>
                 </SwiperSlide>
@@ -45,6 +51,9 @@ const Banner = () => {
                             Your Grades , Join the
                             <span className="text-[#A91D3A] text-4xl md:text-5xl lg:text-6xl font-bold font-rale"> Circle</span>
                         </h1>
+                        <p className="text-center w-3/5 mx-auto text-gray-100">StudyCircle fosters a
+                            community of learners who support each other. Join us to participate in group studies,
+                            complete assignments collaboratively, and grow academically alongside your peers.</p>
                         {bannerBtn}
                     </div>
                 </SwiperSlide>

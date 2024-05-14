@@ -3,17 +3,18 @@ import Swal from 'sweetalert2'
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AllAssignments = () => {
     const [items, setItems] = useState([]);
-    const [urlPath, setUrlPath] = useState('http://localhost:5000/all-assignment');
+    const [urlPath, setUrlPath] = useState('https://studycircle-server.vercel.app/all-assignment');
     const { user } = useAuth();
 
     const handleSort = (e) => {
         const criteria = e.target.value;
         console.log(criteria)
         if (criteria) {
-            setUrlPath(`http://localhost:5000/assignments/${criteria}`);
+            setUrlPath(`https://studycircle-server.vercel.app/assignments/${criteria}`);
         }
     }
 
@@ -42,7 +43,7 @@ const AllAssignments = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/all-assignment/${_id}`, {
+                fetch(`https://studycircle-server.vercel.app/all-assignment/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -64,6 +65,9 @@ const AllAssignments = () => {
     }
     return (
         <div className="px-5 lg:px-12 py-4">
+            <Helmet>
+                <title>StudyCircle | Assignments</title>
+            </Helmet>
             <div className="text-center">
                 <h1 className="text-center text-4xl font-bold font-sans mb-8 mt-4 lg:mt-12">All assignments</h1>
                 <select onChange={handleSort} className="p-3 text-primary font-semibold border-2 border-primary 

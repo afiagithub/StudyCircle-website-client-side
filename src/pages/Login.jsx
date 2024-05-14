@@ -7,6 +7,7 @@ import SocialLogin from "../components/SocialLogin"
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { signInUser } = useAuth();
@@ -35,9 +36,9 @@ const Login = () => {
     }
     return (
         <div className="flex flex-col max-w-md mx-auto p-6 rounded-md sm:p-10 mb-10 font-rale">
-            {/* <Helmet>
-                <title>TourifyNow | Login</title>
-            </Helmet> */}
+            <Helmet>
+                <title>StudyCircle | Login</title>
+            </Helmet>
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold font-sans text-primary">Welcome Back, User</h1>
                 <p className="text-sm dark:text-black">Please Log in to access your account</p>

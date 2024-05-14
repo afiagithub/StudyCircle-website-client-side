@@ -1,13 +1,17 @@
+import { Helmet } from "react-helmet-async";
 import Faq from "../components/faq";
 
 const About = () => {
     return (
         <div className="py-5 px-3 lg:px-5">
+            <Helmet>
+                <title>StudyCircle | About</title>
+            </Helmet>
             <div className="hero mb-5">
                 <div className="hero-content flex-col lg:flex-row gap-8">
-                    <img src="../../public/images/first.jpg" className="max-w-md rounded-lg shadow-2xl" />
+                    <img src="https://i.ibb.co/Qc797Q6/first.jpg" className="max-w-md rounded-lg shadow-2xl" />
                     <div>
-                        <h1 className="text-4xl font-bold font-rale lg:w-5/6">Unlock Success Together: 
+                        <h1 className="text-4xl font-bold font-rale lg:w-5/6">Unlock Success Together:
                             <span className="text-[#A91D3A]"> Study Circle</span>, Your Collaborative Learning Destination</h1>
                         <p className="py-6 lg:w-4/5 leading-relaxed">
                             Welcome to <span className="text-[#A91D3A] text-lg font-bold">StudyCircle</span>

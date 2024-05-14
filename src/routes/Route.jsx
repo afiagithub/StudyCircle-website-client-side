@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             {
                 path: "/assignment/:id",
                 element: <PrivateRoute><AssignDetails></AssignDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`https://studycircle-server.vercel.app/all-assignment/${params.id}`)
             },
             {
                 path: '/login',
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             {
                 path: "/update-assign/:id",
                 element: <PrivateRoute><UpdateAssign></UpdateAssign></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`https://studycircle-server.vercel.app/all-assignment/${params.id}`)
             },
             {
                 path: "/posted-assignment",
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             {
                 path: "/submit-assign/:id",
                 element: <PrivateRoute><SubmitAssign></SubmitAssign></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/all-assignment/${params.id}`)
+                loader: ({ params }) => fetch(`https://studycircle-server.vercel.app/all-assignment/${params.id}`)
             },
             {
                 path: "/attempted-assign",
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
             {
                 path: "/mark-assign/:id",
                 element: <PrivateRoute><MarkAssign></MarkAssign></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/submission/${params.id}`)
+                loader: ({ params }) => fetch(`https://studycircle-server.vercel.app/submission/${params.id}`)
             }
         ]
     },

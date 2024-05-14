@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const PendingAssign = () => {
     const [items, setItems] = useState([]);
@@ -11,23 +12,18 @@ const PendingAssign = () => {
         axiosSecure.get(`/pending/${user.email}`)
             .then(res => {
                 const restItems = res.data.filter(d => d.status === 'Pending');
-                console.log(restItems)
+                // console.log(restItems)
                 setItems(restItems)
             })
-        // fetch(`http://localhost:5000/pending/${user.email}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         const restItems = data.filter(d => d.status === 'Pending');
-        //         console.log(restItems)
-        //         setItems(restItems)
-        //     })
     }, [user])
 
     return (
         <div className="py-5">
+            <Helmet>
+                <title>StudyCircle | Pending Work</title>
+            </Helmet>
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
-                <table className="table">
-                    {/* head */}
+                <table className="table">                    
                     <thead>
                         <tr className="font-rale lg:text-lg text-primary">
                             <th></th>

@@ -10,7 +10,7 @@ const AssignmentSection = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/all-assignment`)
+        fetch(`https://studycircle-server.vercel.app/all-assignment`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
@@ -33,7 +33,7 @@ const AssignmentSection = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/all-assignment/${_id}`, {
+                fetch(`https://studycircle-server.vercel.app/all-assignment/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -61,7 +61,7 @@ const AssignmentSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center mt-10">
                 {
-                    items.slice(0, 3).map(a => <SingleAssignCard key={a._id} a={a} handleDelete={handleDelete}></SingleAssignCard>)
+                    items.slice(0, 6).map(a => <SingleAssignCard key={a._id} a={a} handleDelete={handleDelete}></SingleAssignCard>)
                 }
             </div>
             <div className="text-center mb-6 mt-10">

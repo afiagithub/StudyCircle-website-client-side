@@ -42,10 +42,10 @@ const Footer = () => {
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <div>
                                 <h3 className="text-secondary uppercase font-bold">Pages</h3>
-                                <a href="#" className="block mt-2 text-sm text-secondary  hover:underline">About Us</a>
-                                <a href="#" className="block mt-2 text-sm text-secondary  hover:underline">Assignments</a>
-                                <a href="#" className="block mt-2 text-sm text-secondary  hover:underline">Attempted Work</a>
-                                <a href="#" className="block mt-2 text-sm text-secondary  hover:underline">Pending Work</a>
+                                <a href="/about" className="block mt-2 text-sm text-secondary  hover:underline">About Us</a>
+                                <a href="/assignment" className="block mt-2 text-sm text-secondary  hover:underline">Assignments</a>
+                                <a href="/attempted-assign" className="block mt-2 text-sm text-secondary  hover:underline">Attempted Work</a>
+                                <a href="/pending-assign" className="block mt-2 text-sm text-secondary  hover:underline">Pending Work</a>
                             </div>
 
                             <div>

@@ -36,11 +36,6 @@ const Navbar = () => {
             : "border-2 border-transparent"} to="/about">About</NavLink></li>
         <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
             : "border-2 border-transparent"} to="/assignment">Assignments</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
-            : "border-2 border-transparent"} to="/add-assign">Create Assignments</NavLink></li>
-        <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
-            : "border-2 border-transparent"} to="/pending-assign">Pending Assignments</NavLink></li>
-
     </>
     return (
         <div className="navbar bg-base-100 px-5 lg:px-12 py-4">
@@ -51,6 +46,14 @@ const Navbar = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         {links}
+                        {
+                            user ? <>
+                                <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
+                                    : "border-2 border-transparent"} to="/add-assign">Create Assignments</NavLink></li>
+                                <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
+                                    : "border-2 border-transparent"} to="/pending-assign">Pending Assignments</NavLink></li></>
+                                : ""
+                        }
                     </ul>
                 </div>
                 <Link href="/" className="btn btn-ghost text-2xl text-sans text-[#A91D3A] font-bold">
@@ -59,6 +62,14 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {links}
+                    {
+                        user ? <>
+                            <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
+                                : "border-2 border-transparent"} to="/add-assign">Create Assignments</NavLink></li>
+                            <li className="bg-transparent mx-2 font-bold"><NavLink className={({ isActive }) => isActive ? "border-2 border-primary text-primary"
+                                : "border-2 border-transparent"} to="/pending-assign">Pending Assignments</NavLink></li></>
+                            : ""
+                    }
                 </ul>
             </div>
             <div className="navbar-end">

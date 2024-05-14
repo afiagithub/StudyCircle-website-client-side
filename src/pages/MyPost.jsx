@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const PostedAssign = () => {
     const [items, setItems] = useState([]);
@@ -16,16 +17,10 @@ const PostedAssign = () => {
             .then(res => {
                 setItems(res.data)
             })
-        // fetch(`http://localhost:5000/posted/${user.email}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setItems(data)
-        //     })
     }, [user])
 
     const handleDelete = (_id, email) => {
-        console.log(_id, email);
+        // console.log(_id, email);
         if (email !== user.email) {
             return toast.error("Action Not Permitted")
         }
@@ -40,7 +35,7 @@ const PostedAssign = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/all-assignment/${_id}`, {
+                fetch(`https://studycircle-server.vercel.app/all-assignment/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -62,6 +57,9 @@ const PostedAssign = () => {
     }
     return (
         <div className="py-5">
+            <Helmet>
+                <title>StudyCircle | Posted Work</title>
+            </Helmet>
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
                 <table className="table">
                     {/* head */}
