@@ -6,9 +6,6 @@ StudyCircle-online-study-group-website
 # Live Site URL
 https://study-circle-auth.web.app/
 
-# Server-side Link
-https://github.com/afiagithub/StudyCircle-website-server-side
-
 <br>
 
 # Project Overview
@@ -42,19 +39,9 @@ StudyCircle online learning platform allows students to create assignments, comp
 
 # Run the Project
 If you want to clone and locally run this project, these are the steps you need to follow (you will need [node](https://nodejs.org/en) installed):
-
-To run the client side of this project
 ```
 git clone https://github.com/afiagithub/StudyCircle-website-client-side.git
 cd StudyCircle-website-client-side
-npm install
-npm run dev
-```
-
-To run the server side of this project
-```
-git clone https://github.com/afiagithub/StudyCircle-website-server-side.git
-cd StudyCircle-website-server-side
 npm install
 npm run dev
 ```
